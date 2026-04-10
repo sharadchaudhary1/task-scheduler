@@ -36,7 +36,10 @@ const userSchema=mongoose.Schema({
         }
     },
     gender:{
-        type:String
+        type:String,
+        enum:["male","female","other"],
+        default:"male",
+        required:true
     }
 
 },

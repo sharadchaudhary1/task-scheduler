@@ -3,7 +3,10 @@
 const express=require("express");
 require("dotenv").config()
 const connectDb=require("./config/database")
-const userSchema=require("./models/user")
+const cors=require("cors")
+const cookieParser=require("cookie-parser")
+
+const authRouter=require("./routes/auth")
 
 const app=express()
 
@@ -27,5 +30,13 @@ app.listen(process.env.PORT,()=>{
 }
 
 startServer() 
+
+
+
+app.use("/auth",authRouter)
+
+app.use("/",(req,res)=>{
+    res.send("hello")
+})
 
 
