@@ -3,6 +3,7 @@
 const express=require("express");
 require("dotenv").config()
 const connectDb=require("./config/database")
+const userSchema=require("./models/user")
 
 const app=express()
 
@@ -17,6 +18,6 @@ app.listen(process.env.PORT,()=>{
 
 }
 
-startServer()
+startServer() 
 
 
