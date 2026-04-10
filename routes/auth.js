@@ -44,7 +44,7 @@ router.post("/register", async (req, res) => {
 
    //save user in databse
     await user.save();
-     res.json({
+     res.status(201).json({
      success: true,
      message: "User registered successfully."
     });

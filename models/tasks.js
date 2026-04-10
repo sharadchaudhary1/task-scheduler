@@ -4,12 +4,15 @@ const mongoose=require("mongoose")
 
 const taskSchema=mongoose.Schema({
        
-    task:{  
+    title:{  
         type:String,
-        required:true
+        required:true,
+        trim:true
+
     },
     description:{
         type:String,
+        trim:true
 
     },
     status:{
@@ -22,13 +25,14 @@ const taskSchema=mongoose.Schema({
         enum:["low","medium","high"],
         default:"medium"
     },
-    duedate:{
+    dueDate:{
       type:Date,
 
     },
     userId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"user"
+        ref:"user",
+        required:true
     }
 },{
     timestamps:true

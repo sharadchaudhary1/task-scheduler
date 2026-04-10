@@ -7,6 +7,7 @@ const cors=require("cors")
 const cookieParser=require("cookie-parser")
 
 const authRouter=require("./routes/auth")
+const taskRoutes=require("./routes/tasks")
 
 const app=express()
 
@@ -34,9 +35,8 @@ startServer()
 
 
 app.use("/auth",authRouter)
+ app.use("/tasks",taskRoutes)
 
-app.use("/",(req,res)=>{
-    res.send("hello")
-})
-
-
+// app.use("/",async(req,res)=>{
+//     res.send("helo")
+// })
