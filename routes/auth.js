@@ -7,6 +7,7 @@ const jwt=require("jsonwebtoken")
 const UserModel=require("../models/user")
 require("dotenv").config()
 const validator=require("validator")
+const userAuth = require("../middleware/user")
 
 
 
@@ -124,4 +125,17 @@ router.post("/logout",async(req,res)=>{
     res.json({success:true,message:"logged out successfully"})
 })
 
+
+
+router.get("/getuser",userAuth,async(req,res)=>{
+
+    try{
+           res.json({
+      success: true,
+      user: req.user
+    });
+  } catch (err) {
+    res.status(500).json({ success: false });
+    }
+})
 module.exports=router;

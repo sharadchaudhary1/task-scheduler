@@ -181,4 +181,45 @@ router.delete("/:id",userAuth,async(req,res)=>{
 })
 
 
+//get task
+router.get("/gettask/:id",userAuth,async(req,res)=>{
+
+    try{
+        
+        const task =await TaskModel.findById(req.params.id)
+
+        res.status(200).json({
+            success:true,
+            task:task
+        })
+
+    }catch(err){
+        console.log(err.message)
+    }
+
+})
+
+
+router.get("/completed", userAuth, async (req, res) => {
+  try {
+    const completedTasks = await TaskModel.find({
+      userId: req.user._id,
+      status: "completed",
+    });
+
+    res.status(200).json({
+      success: true,
+      tasks: completedTasks,
+    });
+  } catch (err) {
+    console.log(err.message);
+
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+});
+
+
 module.exports=router;
